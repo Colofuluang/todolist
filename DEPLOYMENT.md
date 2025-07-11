@@ -9,7 +9,7 @@
    # 如果还没有推送到 GitHub，执行以下步骤：
    # 1. 在 GitHub 上创建新仓库
    # 2. 添加远程仓库
-   git remote add origin https://github.com/你的用户名/todolist.git
+   git remote add origin https://github.com/Colofuluang/todolist.git
    git branch -M main
    git push -u origin main
    ```
@@ -55,26 +55,55 @@
 
 ### GitHub Pages 部署
 
-1. **安装 gh-pages**
+#### 方法一：手动部署（推荐新手）
+
+1. **项目已配置完成**
+   - ✅ gh-pages 包已安装
+   - ✅ package.json 脚本已添加
+   - ✅ vite.config.ts 已配置 base 路径
+
+2. **创建 GitHub 仓库**
+   - 在 GitHub 上创建新仓库，命名为 `todolist`
+   - 不要初始化 README、.gitignore 或 license
+
+3. **推送代码到 GitHub**
    ```bash
-   npm install --save-dev gh-pages
+   git remote add origin https://github.com/你的用户名/todolist.git
+   git branch -M main
+   git push -u origin main
    ```
 
-2. **修改 package.json**
-   ```json
-   {
-     "homepage": "https://你的用户名.github.io/todolist",
-     "scripts": {
-       "predeploy": "npm run build",
-       "deploy": "gh-pages -d dist"
-     }
-   }
-   ```
+4. **启用 GitHub Pages**
+   - 进入仓库设置 (Settings)
+   - 找到 "Pages" 选项
+   - Source 选择 "Deploy from a branch"
+   - Branch 选择 "gh-pages"
+   - 点击 Save
 
-3. **部署**
+5. **部署项目**
    ```bash
    npm run deploy
    ```
+
+6. **访问网站**
+   - 部署完成后访问：`https://你的用户名.github.io/todolist`
+
+#### 方法二：GitHub Actions 自动部署
+
+1. **GitHub Actions 工作流已配置**
+   - ✅ `.github/workflows/deploy.yml` 已创建
+   - 每次推送到 main 分支时自动部署
+
+2. **推送代码触发部署**
+   ```bash
+   git add .
+   git commit -m "Setup GitHub Pages deployment"
+   git push origin main
+   ```
+
+3. **查看部署状态**
+   - 在 GitHub 仓库的 "Actions" 标签页查看部署进度
+   - 部署成功后在 "Settings > Pages" 查看网站地址
 
 ## 📝 部署前检查清单
 
